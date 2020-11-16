@@ -47,7 +47,10 @@ public class Ball : MonoBehaviour
         // click held
         if (Input.GetMouseButton(0))
         {
-            line.SetPosition(1, this.transform.position);
+            if (pivot.activeSelf)
+            {
+                line.SetPosition(1, this.transform.position);
+            }
         }
 
         // click release
@@ -59,8 +62,29 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        if (col.gameObject.CompareTag("Danger"))
+        {
+            LevelFail();
+        }
+
+        if (col.gameObject.CompareTag("Goal"))
+        {
+            LevelComplete();
+        }
+    }
+
+    void LevelFail()
+    {
         // respawn
         rb.velocity = Vector3.zero;
         transform.position = startingPos;
+
+        // remove pivot
+        pivot.SetActive(false);
+    }
+
+    void LevelComplete()
+    {
+        Debug.Log("Level Completed");
     }
 }
