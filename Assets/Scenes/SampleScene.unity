@@ -891,8 +891,8 @@ GameObject:
   - component: {fileID: 1994511439}
   - component: {fileID: 1994511438}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Bounce Wall
+  m_TagString: Bounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -904,7 +904,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994511437}
-  m_Material: {fileID: 13400000, guid: ac74e896207b0ff41905d4b75a732690, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -992,6 +992,18 @@ PrefabInstance:
       propertyPath: pivot
       value: 
       objectReference: {fileID: 138850736}
+    - target: {fileID: 5023593992769487501, guid: c9c279a4a7ee93f42a149a0dbee8a316, type: 3}
+      propertyPath: hingeSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023593992769487501, guid: c9c279a4a7ee93f42a149a0dbee8a316, type: 3}
+      propertyPath: hingeForce
+      value: 9000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023593992769487501, guid: c9c279a4a7ee93f42a149a0dbee8a316, type: 3}
+      propertyPath: bounceForce
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5023593992769487502, guid: c9c279a4a7ee93f42a149a0dbee8a316, type: 3}
       propertyPath: m_LocalPosition.x
       value: -39.4
@@ -1093,6 +1105,18 @@ PrefabInstance:
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 1989431849}
+    - target: {fileID: 5755278641170615228, guid: a22a7087751e1e14aa220bbf7c07fb0c, type: 3}
+      propertyPath: m_Motor.targetVelocity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755278641170615228, guid: a22a7087751e1e14aa220bbf7c07fb0c, type: 3}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755278641170615228, guid: a22a7087751e1e14aa220bbf7c07fb0c, type: 3}
+      propertyPath: m_Motor.force
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5755278641170615229, guid: a22a7087751e1e14aa220bbf7c07fb0c, type: 3}
       propertyPath: m_Name
       value: Pivot

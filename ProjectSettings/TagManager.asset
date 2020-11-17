@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Danger
   - Goal
+  - Bounce
   layers:
   - Default
   - TransparentFX

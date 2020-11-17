@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     public Camera mainCamera;
     public GameObject pivot;
+    public float bounceForce;
     
     private Rigidbody rb;
     private Vector3 startingPos;
@@ -31,7 +32,6 @@ public class Ball : MonoBehaviour
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                // 
                 joint.connectedAnchor = pivot.transform.position - this.transform.position;
                 pivot.transform.position = new Vector3(hit.point.x, hit.point.y, this.transform.position.z);
 
@@ -49,6 +49,7 @@ public class Ball : MonoBehaviour
         {
             if (pivot.activeSelf)
             {
+                // update line connecting ball and hingejoint
                 line.SetPosition(1, this.transform.position);
             }
         }
@@ -62,6 +63,12 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        if (col.gameObject.CompareTag("Bounce"))
+        {
+            Vector3 dir = col.GetContact(0).normal;
+            rb.AddForce(dir * bounceForce, ForceMode.Impulse);
+        }
+
         if (col.gameObject.CompareTag("Danger"))
         {
             LevelFail();
