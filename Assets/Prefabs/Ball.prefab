@@ -127,3 +127,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   pivot: {fileID: 5755278641170615229, guid: a22a7087751e1e14aa220bbf7c07fb0c, type: 3}
+  bounceForce: 0

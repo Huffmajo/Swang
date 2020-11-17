@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
     private Vector3 startingPos;
     private HingeJoint joint;
     private LineRenderer line;
+    private TrailRenderer trail;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class Ball : MonoBehaviour
         pivot.SetActive(false);
         joint = pivot.GetComponent<HingeJoint>();
         line = pivot.GetComponent<LineRenderer>();
+        trail = GetComponent<TrailRenderer>();
     }
 
     void Update()
@@ -88,6 +90,9 @@ public class Ball : MonoBehaviour
 
         // remove pivot
         pivot.SetActive(false);
+
+        // clear trail
+        trail.Clear();
     }
 
     void LevelComplete()
