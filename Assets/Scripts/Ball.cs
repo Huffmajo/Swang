@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     public Camera mainCamera;
     public GameObject pivot;
     public float bounceForce;
+    public float tetherChange;
     
     private Rigidbody rb;
     private Vector3 startingPos;
@@ -34,7 +35,10 @@ public class Ball : MonoBehaviour
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
+                // connect joint at pivot point
                 joint.connectedAnchor = pivot.transform.position - this.transform.position;
+
+                // place pivot at click point
                 pivot.transform.position = new Vector3(hit.point.x, hit.point.y, this.transform.position.z);
 
                 // draw line between pivot and ball
@@ -54,6 +58,27 @@ public class Ball : MonoBehaviour
                 // update line connecting ball and hingejoint
                 line.SetPosition(1, this.transform.position);
             }
+
+            // adjust tether length with scroll
+            // if (Input.mouseScrollDelta.y != 0)
+            // {
+            //     if (Input.mouseScrollDelta.y > 0)
+            //     {
+            //         // shorten tether
+            //         Vector3 dir = pivot.transform.position - transform.position;
+            //         transform.Translate(dir * tetherChange);
+            //         joint.connectedAnchor = pivot.transform.position - this.transform.position; // adjust hinge anchor point
+            //         Debug.Log("Scroll up");
+            //     }
+            //     else
+            //     {
+            //         // lengthen tether
+            //         Vector3 dir = transform.position - pivot.transform.position;
+            //         transform.Translate(dir * tetherChange);
+            //         joint.connectedAnchor = pivot.transform.position - this.transform.position; // adjust hinge anchor point
+            //         Debug.Log("Scroll down");
+            //     }
+            // }
         }
 
         // click release
@@ -65,6 +90,12 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        // remove tether on collision
+        if (pivot.activeSelf)
+        {
+            pivot.SetActive(false);
+        }
+
         if (col.gameObject.CompareTag("Bounce"))
         {
             Vector3 dir = col.GetContact(0).normal;
