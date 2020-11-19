@@ -5,7 +5,7 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     public float forceMin;
-    public float forceMax;
+    // public float forceMax;
     public GameObject fracturedPrefab;
     public bool isBroken;
 
@@ -25,8 +25,8 @@ public class Goal : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
        
-
         Debug.Log("Goal hit");
+        BreakGoal();
     }
 
     void BreakGoal()
@@ -40,11 +40,12 @@ public class Goal : MonoBehaviour
             if (rb != null)
             {
                 Vector3 dir = rb.transform.position - transform.position.normalized;
-                rb.AddForce(dir * Random.Range(forceMin, forceMax));
+                rb.AddForce(dir * forceMin);
             }
         }
 
         // remove undamaged goal
         // gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
